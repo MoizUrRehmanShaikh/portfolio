@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <meta name="description" content="Futuristic portfolio of Moiz Ur Rehman Shaikh — Digital Marketing & SEO Specialist, Meta Ads, Shopify, WordPress, Virtual Assistant." />
+  <meta name="theme-color" content="#0b1020" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS (Animate on Scroll) CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> <!-- [web:9] -->
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0A1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.085);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 30px 80px rgba(0,0,0,.45);
+      --shadow2: 0 18px 50px rgba(0,0,0,.35);
+      --cyan:#4CF3FF;
+      --violet:#A78BFA;
+      --pink:#FF4DD8;
+      --lime:#6EE7B7;
+      --orange:#FFB86B;
+      --radius: 18px;
+      --radius2: 26px;
+      --container: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 900px at 20% 0%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(1000px 800px at 90% 30%, rgba(76,243,255,.16), transparent 55%),
+                  radial-gradient(900px 900px at 60% 100%, rgba(255,77,216,.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Animated grain (subtle) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-200px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+      opacity:.06;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      animation: drift 16s linear infinite;
+      transform: translateZ(0);
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0) rotate(0deg); }
+      100%{ transform: translate3d(-140px,120px,0) rotate(10deg); }
+    }
+
+    /* 3D canvas layer */
+    #space{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      display:block;
+    }
+    .vignette{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background: radial-gradient(1200px 900px at 50% 0%, transparent 35%, rgba(0,0,0,.35) 70%, rgba(0,0,0,.65) 100%);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    /* Top nav */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,10,18,.75), rgba(7,10,18,.45));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(76,243,255,.95), rgba(76,243,255,0) 60%),
+        radial-gradient(circle at 70% 70%, rgba(255,77,216,.95), rgba(255,77,216,0) 60%),
+        linear-gradient(135deg, rgba(167,139,250,.55), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 90deg, rgba(76,243,255,.0), rgba(76,243,255,.55), rgba(255,77,216,.55), rgba(167,139,250,.55), rgba(76,243,255,.0));
+      animation: spin 4.8s linear infinite;
+      opacity:.45;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg); } }
+
+    .brand-text .name{ font-weight:700; letter-spacing:.2px; line-height:1.05; }
+    .brand-text .role{ color:var(--muted); font-size:12.5px; margin-top:2px; }
+
+    .nav-links{
+      display:flex; align-items:center; gap:18px;
+    }
+    .nav-links a{
+      color: rgba(234,240,255,.78);
+      font-weight:600;
+      font-size: 14px;
+      padding:10px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    .nav-links a:hover{
+      color: rgba(234,240,255,.98);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta{
+      display:flex; align-items:center; gap:10px;
+      min-width: 240px;
+      justify-content:flex-end;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      font-weight:700;
+      font-size: 13px;
+      white-space:nowrap;
+      transition:.2s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); }
+    .dot{
+      width:10px; height:10px;
+      border-radius:99px;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,183,1), rgba(110,231,183,.2));
+      box-shadow: 0 0 0 6px rgba(110,231,183,.12);
+    }
+    .ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.14);
+      font-weight:700;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 70px 0 38px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: rgba(234,240,255,.84);
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: var(--shadow2);
+    }
+    .spark{
+      width:12px; height:12px;
+      background: radial-gradient(circle at 35% 35%, rgba(76,243,255,1), rgba(76,243,255,0));
+      border-radius: 99px;
+      box-shadow: 0 0 0 8px rgba(76,243,255,.11);
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4.4vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.8px;
+    }
+    .lead{
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 16.5px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      margin: 18px 0 18px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(234,240,255,.92);
+      font-weight: 800;
+      font-size: 14px;
+      transition: .2s ease;
+      box-shadow: var(--shadow2);
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.08);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(76,243,255,.18), rgba(167,139,250,.18), rgba(255,77,216,.14));
+      border-color: rgba(255,255,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .btn.primary::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: conic-gradient(from 180deg, rgba(76,243,255,0), rgba(76,243,255,.28), rgba(255,77,216,.24), rgba(167,139,250,.22), rgba(76,243,255,0));
+      animation: spin 6.8s linear infinite;
+      opacity:.55;
+    }
+    .btn.primary span{ position:relative; z-index:1; }
+    .btn small{ opacity:.72; font-weight:700; }
+
+    .hero-card{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(900px 400px at 20% 10%, rgba(76,243,255,.16), transparent 60%),
+                  radial-gradient(600px 400px at 80% 30%, rgba(255,77,216,.12), transparent 55%),
+                  radial-gradient(600px 520px at 40% 110%, rgba(167,139,250,.14), transparent 55%);
+      pointer-events:none;
+    }
+    .hero-card-inner{
+      position:relative;
+      padding: 18px 18px 16px;
+    }
+    .profile{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      padding: 8px 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .avatar{
+      width:58px; height:58px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: radial-gradient(circle at 30% 30%, rgba(76,243,255,.9), rgba(76,243,255,0) 60%),
+                  radial-gradient(circle at 70% 70%, rgba(255,77,216,.9), rgba(255,77,216,0) 60%),
+                  linear-gradient(135deg, rgba(167,139,250,.45), rgba(255,255,255,.06));
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .avatar::after{
+      content:"MS";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing: .8px;
+      color: rgba(234,240,255,.92);
+      text-shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+    .profile-meta .title{ font-weight: 900; font-size: 16px; }
+    .profile-meta .sub{ color: var(--muted); font-size: 13px; margin-top:2px; line-height: 1.35; }
+    .quick{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .kpi{
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+    }
+    .kpi .v{
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .kpi .l{ color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+
+    .mini-links{
+      display:flex; flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.86);
+      font-weight: 800;
+      font-size: 12.5px;
+      transition:.2s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); }
+    .ico{
+      width:18px; height:18px;
+      display:inline-grid; place-items:center;
+      border-radius: 7px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 12px;
+    }
+
+    /* Sections */
+    section{ padding: 42px 0; }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    .hint{ color: var(--muted); font-size: 13.5px; line-height: 1.5; max-width: 70ch; }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.045));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      transform: translateZ(0);
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(800px 280px at 10% 0%, rgba(76,243,255,.11), transparent 60%),
+        radial-gradient(500px 260px at 90% 20%, rgba(255,77,216,.08), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .card-inner{ position:relative; padding: 16px; }
+
+    .card h3{
+      margin: 2px 0 8px;
+      font-size: 16px;
+      letter-spacing:-0.2px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .tagrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .tag{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(234,240,255,.82);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+    }
+
+    /* Projects */
+    .project-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .project-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight: 900;
+      font-size: 13px;
+      transition:.2s ease;
+    }
+    .link:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.22); }
+    .link .arrow{ opacity:.8; }
+
+    /* Timeline */
+    .timeline{
+      display:grid;
+      gap: 12px;
+    }
+    .t-item{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      align-items:start;
+    }
+    .t-time{
+      color: rgba(234,240,255,.78);
+      font-weight: 900;
+      font-size: 12.5px;
+      padding-top: 4px;
+    }
+
+    /* Footer */
+    footer{
+      padding: 40px 0 56px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 24px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.03), transparent);
+    }
+    .foot{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .small{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    /* Utilities */
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 18px 0 0;
+    }
+    .glowline{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(76,243,255,.55), rgba(167,139,250,.35), rgba(255,77,216,.35), transparent);
+      opacity:.7;
+    }
+
+    /* Floating controls */
+    .floatbar{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .fab{
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow2);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:.2s ease;
+      color: rgba(234,240,255,.88);
+      font-weight: 900;
+      user-select:none;
+    }
+    .fab:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.24); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+      .nav-cta{ min-width: auto; }
+      .brand{ min-width: auto; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .t-item{ grid-template-columns: 1fr; }
+      .t-time{ padding-top: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior:auto !important; }
+      body::before{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brand-text">
+          <div class="name">Portfolio</div>
+          <div class="role"></div>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="pill ghost" href="#contact" title="Jump to contact">
+          <span class="dot" aria-hidden="true"></span>
+          Available for work
+        </a>
+        <a class="pill" href="#" id="downloadCv">
+          Download CV
+        </a>
+      </div>
+    </div>
+    <div class="glowline" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge" data-aos="fade-up" data-aos-duration="700">
+            <span class="spark" aria-hidden="true"></span>
+            Hyderabad, Sindh, Pakistan • Remote / Freelance
+          </div>
+
+          <h1 data-aos="fade-up" data-aos-duration="800" data-aos-delay="60">
+            Growth-Focused SEO, Meta Ads & Shopify/WordPress Optimization Designed to Scale Your Business.
+          </h1>
+
+          <p class="lead" data-aos="fade-up" data-aos-duration="850" data-aos-delay="120">
+           
+          </p>
+
+          <div class="hero-actions" data-aos="fade-up" data-aos-duration="900" data-aos-delay="180">
+            <a class="btn primary" href="#projects"><span>View projects<small></small></span></a>
+            <a class="btn" href="#contact"><span>Hire me<small></small></span></a>
+            <a class="btn" href="mailto:moizurrehmanshaikh@gmail.com"><span>Email<small></small></span></a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid-2" style="margin-top:16px;">
+            <div class="card" data-aos="fade-up" data-aos-duration="800">
+              <div class="card-inner">
+                <h3>What you get</h3>
+                <p>Clean SEO foundations, conversion-first pages, performance-friendly design, and ads that track properly (Pixel/CAPI-ready structure).</p>
+                <div class="tagrow">
+                  <span class="tag">Technical SEO</span>
+                  <span class="tag">On-page SEO</span>
+                  <span class="tag">Meta Ads</span>
+                  <span class="tag">Landing pages</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="80">
+              <div class="card-inner">
+                <h3>How you work with me</h3>
+                <p>Weekly reporting + clear deliverables: audit → quick wins → content & CRO → scaling campaigns (or sustainable SEO growth).</p>
+                <div class="tagrow">
+                  <span class="tag">Freelance</span>
+                  <span class="tag">Long-term</span>
+                  <span class="tag">Remote</span>
+                  <span class="tag">VA support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" data-aos="zoom-in" data-aos-duration="900">
+          <div class="hero-card-inner">
+            <div class="profile">
+              <div class="avatar" aria-hidden="true"></div>
+              <div class="profile-meta">
+                <div class="title">Moiz Ur Rehman Shaikh</div>
+                <div class="sub">Digital Marketing & SEO Specialist • Meta (Facebook) Ads • Shopify + WordPress Growth • Virtual Assistant</div>
+              </div>
+            </div>
+
+            <div class="quick">
+              <div class="kpi">
+                <div class="v">2+ yrs</div>
+                <div class="l">Hands-on SEO + ads + store management</div>
+              </div>
+              <div class="kpi">
+                <div class="v">Speed</div>
+                <div class="l">Optimized UI & performance mindset</div>
+              </div>
+              <div class="kpi">
+                <div class="v">Tracking</div>
+                <div class="l">Pixel-ready funnel structure</div>
+              </div>
+              <div class="kpi">
+                <div class="v">Remote</div>
+                <div class="l">Consistent delivery + reporting</div>
+              </div>
+            </div>
+
+            <div class="mini-links">
+              <a class="chip" href="https://www.linkedin.com/in/moiz-ur-rehman-shaikh/" target="_blank" rel="noopener">
+                <span class="ico">in</span> LinkedIn
+              </a>
+              <a class="chip" href="https://github.com/MoizUrRehmanShaikh" target="_blank" rel="noopener">
+                <span class="ico">{ }</span> GitHub
+              </a>
+              <a class="chip" href="https://www.facebook.com/moizurrehmanshaikh1/" target="_blank" rel="noopener">
+                <span class="ico">f</span> Facebook
+              </a>
+              <a class="chip" href="https://www.instagram.com/" target="_blank" rel="noopener">
+                <span class="ico">◎</span> Instagram
+              </a>
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="margin-top:14px;">
+              <div style="font-weight:900; margin-bottom:8px;">Working links</div>
+              <div class="project-links">
+                <a class="link" href="https://smartsavingstore.com/" target="_blank" rel="noopener">
+                  Website <span class="arrow">↗</span>
+                </a>
+                <a class="link" href="https://smartsavingstore.shop/" target="_blank" rel="noopener">
+                  Store <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-aos="fade-up">Services</h2>
+          <div class="hint" data-aos="fade-up" data-aos-delay="60">
+            
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" data-aos="fade-up" data-aos-duration="800">
+            <div class="card-inner">
+              <h3>SEO (Audit → Fix → Grow)</h3>
+              <p>Technical fixes, on-page optimization, content refresh, internal linking, and basic reporting with actionable next steps.</p>
+              <div class="tagrow">
+                <span class="tag">GSC-ready</span>
+                <span class="tag">Keyword mapping</span>
+                <span class="tag">Content SOP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="70">
+            <div class="card-inner">
+              <h3>Meta Ads (Facebook/Instagram)</h3>
+              <p>Campaign setup, creatives checklist, audience testing, and conversion driven landing page alignment.</p>
+              <div class="tagrow">
+                <span class="tag">Testing plan</span>
+                <span class="tag">Scaling</span>
+                <span class="tag">Retargeting</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="140">
+            <div class="card-inner">
+              <h3>Shopify + WordPress Growth</h3>
+              <p>Store/site optimization, product page structure, speed improvements, and conversion focused UX updates.</p>
+              <div class="tagrow">
+                <span class="tag">CRO basics</span>
+                <span class="tag">Speed</span>
+                <span class="tag">Product SEO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-aos="fade-up">Projects</h2>
+          <div class="hint" data-aos="fade-up" data-aos-delay="60">
+            
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card" data-aos="fade-up" data-aos-duration="850">
+            <div class="card-inner">
+              <div class="project-top">
+                <div>
+                  <h3>SmartSavingStore Shopify Store Optimization</h3>
+                  <p>Improved product page structure, collections, and basic technical SEO (titles, meta, internal links), plus CRO-focused layout tweaks.</p>
+                </div>
+                <div class="project-links">
+                  <a class="link" href="https://smartsavingstore.shop/" target="_blank" rel="noopener">Visit <span class="arrow">↗</span></a>
+                </div>
+              </div>
+              <div class="tagrow">
+                <span class="tag">Shopify</span>
+                <span class="tag">Product SEO</span>
+                <span class="tag">CRO</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="850" data-aos-delay="80">
+            <div class="card-inner">
+              <div class="project-top">
+                <div>
+                  <h3>SmartSavingStore  Marketing Website</h3>
+                  <p>Landing page improvements, performance first design, and SEO-ready structure for better organic discovery and ad conversions.</p>
+                </div>
+                <div class="project-links">
+                  <a class="link" href="https://smartsavingstore.com/" target="_blank" rel="noopener">Visit <span class="arrow">↗</span></a>
+                </div>
+              </div>
+              <div class="tagrow">
+                <span class="tag">WordPress</span>
+                <span class="tag">SEO</span>
+                <span class="tag">Speed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="850">
+            <div class="card-inner">
+              <div class="project-top">
+                <div>
+                  <h3>Meta Ads  Lead Generation Funnel</h3>
+                  <p>Campaign structure: cold audiences + retargeting + conversion page with tracking. Add real ROAS/CPA results here.</p>
+                </div>
+                <div class="project-links">
+                  <a class="link" href="#contact">Request details <span class="arrow">→</span></a>
+                </div>
+              </div>
+              <div class="tagrow">
+                <span class="tag">Meta Ads</span>
+                <span class="tag">Funnels</span>
+                <span class="tag">Tracking</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="850" data-aos-delay="80">
+            <div class="card-inner">
+              <div class="project-top">
+                <div>
+                  <h3>SEO Content Refresh</h3>
+                  <p>Updated titles/H1s, refreshed content sections, added FAQs, fixed internal linking, and improved readability for better ranking signals.</p>
+                </div>
+                <div class="project-links">
+                  <a class="link" href="#contact">See sample <span class="arrow"></span></a>
+                </div>
+              </div>
+              <div class="tagrow">
+                <span class="tag">On-page SEO</span>
+                <span class="tag">Content</span>
+                <span class="tag">Internal links</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-aos="fade-up">Skills</h2>
+          <div class="hint" data-aos="fade-up" data-aos-delay="60">
+            
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" data-aos="fade-up" data-aos-duration="800">
+            <div class="card-inner">
+              <h3>Digital Marketing</h3>
+              <p>Funnel planning, landing page alignment, basic CRO thinking, and clear weekly reporting.</p>
+              <div class="tagrow">
+                <span class="tag">CRO</span>
+                <span class="tag">Copy basics</span>
+                <span class="tag">Reporting</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="70">
+            <div class="card-inner">
+              <h3>SEO</h3>
+              <p>Technical checks, on-page optimization, content improvements, and structure that search engines can understand.</p>
+              <div class="tagrow">
+                <span class="tag">Technical SEO</span>
+                <span class="tag">On-page</span>
+                <span class="tag">Content</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="140">
+            <div class="card-inner">
+              <h3>Web Platforms</h3>
+              <p>Shopify product/collection setup, WordPress page updates, performance-friendly structure, and site hygiene.</p>
+              <div class="tagrow">
+                <span class="tag">Shopify</span>
+                <span class="tag">WordPress</span>
+                <span class="tag">Speed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-aos="fade-up">Experience</h2>
+          <div class="hint" data-aos="fade-up" data-aos-delay="60">
+
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-duration="850">
+          <div class="card-inner">
+            <div class="timeline">
+              <div class="t-item">
+                <div class="t-time">2023+2024 Present</div>
+                <div>
+                  <h3>Self-employed  Digital Marketing & SEO Specialist</h3>
+                  <p>SEO audits and optimizations, content improvements, Meta Ads campaign management, and Shopify/WordPress website updates, plus Virtual Assistant support for daily operations.</p>
+                  <div class="tagrow">
+                    <span class="tag">SEO</span>
+                    <span class="tag">Meta Ads</span>
+                    <span class="tag">Shopify</span>
+                    <span class="tag">WordPress</span>
+                    <span class="tag">VA</span>
+                  </div>
+                </div>
+              </div>
+              <div class="t-item">
+                <div class="t-time">  2025 Past</div>
+                <div>
+                  <h3>Sindh Agricultural University BS Computer Science (In progress)</h3>
+                  <p>Building technical skills that support modern marketing workflows tracking, site performance, automation, and clean web implementation.</p>
+                  <div class="tagrow">
+                    <span class="tag">Computer Science</span>
+                    <span class="tag">Web</span>
+                    <span class="tag">Automation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-aos="fade-up">Contact</h2>
+          <div class="hint" data-aos="fade-up" data-aos-delay="60">
+           
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card" data-aos="fade-up" data-aos-duration="850">
+            <div class="card-inner">
+              <h3>Let’s build growth</h3>
+              <p style="margin-bottom:12px;">Please share your project niche, goals, timeline, and budget range to get started.</p>
+              <div class="tagrow">
+                <span class="tag">Freelance</span>
+                <span class="tag">Remote</span>
+                <span class="tag">Long-term</span>
+              </div>
+
+              <div class="divider"></div>
+
+              <div style="display:grid; gap:10px; margin-top:14px;">
+                <a class="btn" href="mailto:moizurrehmanshaikh@gmail.com"><span>Email: moizurrehmanshaikh@gmail.com</span></a>
+                <button class="btn" id="copyEmail" type="button"><span>Copy email</span></button>
+                <a class="btn" href="https://www.linkedin.com/in/moiz-ur-rehman-shaikh/" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-duration="850" data-aos-delay="80">
+            <div class="card-inner">
+              <h3></h3>
+              <p style="margin-bottom:12px;"></p>
+
+              <form id="contactForm">
+                <div style="display:grid; gap:10px;">
+                  <input class="input" name="name" placeholder="Your name" required />
+                  <input class="input" name="email" type="email" placeholder="Your email" required />
+                  <input class="input" name="subject" placeholder="Subject" required />
+                  <textarea class="input" name="message" rows="5" placeholder="Message" required></textarea>
+                  <button class="btn primary" type="submit"><span>Send via email <small></small></span></button>
+                </div>
+              </form>
+
+              <style>
+                .input{
+                  width:100%;
+                  padding: 12px 12px;
+                  border-radius: 14px;
+                  border: 1px solid rgba(255,255,255,.14);
+                  background: rgba(0,0,0,.18);
+                  color: rgba(234,240,255,.92);
+                  outline:none;
+                  font-weight: 700;
+                  font-size: 14px;
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+                  transition:.2s ease;
+                }
+                .input:focus{
+                  border-color: rgba(76,243,255,.35);
+                  box-shadow: 0 0 0 6px rgba(76,243,255,.10);
+                }
+                textarea.input{ resize: vertical; min-height: 120px; }
+              </style>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container foot">
+        <div>
+          <div class="brand" style="padding:0;">
+            <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;"></div>
+            <div class="brand-text">
+              <div class="name">Moiz Shaikh</div>
+              <div class="role">Digital Marketing & SEO Specialist</div>
+            </div>
+          </div>
+          <p class="small" style="margin-top:10px;">
+            
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="pill" href="#services">Services</a>
+          <a class="pill" href="#projects">Projects</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="floatbar" aria-label="Quick actions">
+    <div class="fab" id="toTop" title="Back to top">↑</div>
+    <div class="fab" id="toggleFX" title="Toggle background effects">FX</div>
+  </div>
+
+  <!-- Libs -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <!-- [web:9] -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script> <!-- [web:10] -->
+
+  <script>
+    // AOS init (scroll animations) [web:9]
+    AOS.init({ once: true, duration: 750, easing: "ease-out-cubic", offset: 80 });
+
+    // Smooth anchor scrolling (no extra libs)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener("click",(e)=>{
+        const id = a.getAttribute("href");
+        if(!id || id === "#") return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block:"start" });
+      });
+    });
+
+    // Buttons
+    const email = "moizurrehmanshaikh@gmail.com";
+
+    document.getElementById("copyEmail").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(email);
+        gsap.fromTo("#copyEmail",{scale:1},{scale:1.03,duration:.12,yoyo:true,repeat:1});
+        document.getElementById("copyEmail").querySelector("span").textContent = "Copied!";
+        setTimeout(()=>document.getElementById("copyEmail").querySelector("span").textContent="Copy email", 1200);
+      }catch(err){
+        window.location.href = "mailto:" + email;
+      }
+    });
+
+    document.getElementById("downloadCv").addEventListener("click", (e) => {
+      e.preventDefault();
+      // Demo behavior: create a dummy CV text file.
+      const content = `Moiz Ur Rehman Shaikh
+Digital Marketing & SEO Specialist | Meta Ads | Shopify + WordPress | Virtual Assistant
+
+Email: ${email}
+Location: Hyderabad, Sindh, Pakistan
+
+Summary:
+- SEO (technical + on-page + content optimization)
+- Meta Ads (setup, testing, optimization)
+- Shopify/WordPress site management
+- Remote VA support
+
+(Replace this dummy CV with your real PDF.)`;
+      const blob = new Blob([content], {type:"text/plain"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Moiz_Shaikh_CV.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("contactForm").addEventListener("submit",(e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const name = fd.get("name");
+      const from = fd.get("email");
+      const subject = encodeURIComponent(fd.get("subject"));
+      const msg = encodeURIComponent(
+        `Name: ${name}\nEmail: ${from}\n\nMessage:\n${fd.get("message")}\n\n— Sent from portfolio site`
+      );
+      window.location.href = `mailto:${email}?subject=${subject}&body=${msg}`;
+    });
+
+    // Floating actions
+    document.getElementById("toTop").addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}) );
+
+    // 3D-ish background: "space network" particles on canvas (fast, no WebGL)
+    const canvas = document.getElementById("space");
+    const ctx = canvas.getContext("2d", { alpha: true });
+    let W, H, DPR;
+    let running = true;
+
+    const state = {
+      t: 0,
+      particles: [],
+      mouse: { x: 0.5, y: 0.35, vx: 0, vy: 0, active: false },
+    };
+
+    function resize(){
+      DPR = Math.min(2, window.devicePixelRatio || 1);
+      W = canvas.width = Math.floor(window.innerWidth * DPR);
+      H = canvas.height = Math.floor(window.innerHeight * DPR);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+    }
+    window.addEventListener("resize", resize, { passive:true });
+    resize();
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    function makeParticles(){
+      const count = Math.floor(Math.min(120, Math.max(70, window.innerWidth / 12)));
+      state.particles = Array.from({length: count}, () => ({
+        x: rand(0,1),
+        y: rand(0,1),
+        r: rand(0.6, 1.8),
+        s: rand(0.15, 0.55), // speed
+        a: rand(0.25, 0.85),
+        hue: rand(185, 310)
+      }));
+    }
+    makeParticles();
+
+    window.addEventListener("pointermove", (e)=>{
+      state.mouse.active = true;
+      const nx = e.clientX / window.innerWidth;
+      const ny = e.clientY / window.innerHeight;
+      state.mouse.vx = nx - state.mouse.x;
+      state.mouse.vy = ny - state.mouse.y;
+      state.mouse.x = nx; state.mouse.y = ny;
+    }, { passive:true });
+
+    window.addEventListener("pointerleave", ()=>{
+      state.mouse.active = false;
+    }, { passive:true });
+
+    function draw(){
+      if(!running) return;
+      state.t += 0.01;
+
+      ctx.clearRect(0,0,W,H);
+
+      // Background glow blobs
+      const gx = (state.mouse.x * W) || W*0.5;
+      const gy = (state.mouse.y * H) || H*0.3;
+
+      const grad = ctx.createRadialGradient(gx, gy, 10*DPR, gx, gy, Math.max(W,H)*0.55);
+      grad.addColorStop(0, "rgba(76,243,255,0.12)");
+      grad.addColorStop(0.4, "rgba(167,139,250,0.08)");
+      grad.addColorStop(0.8, "rgba(255,77,216,0.04)");
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,W,H);
+
+      // Move + draw particles
+      const mx = state.mouse.x, my = state.mouse.y;
+      const linkDist = (Math.min(W,H) / DPR) * 0.12; // in CSS pixels
+      const linkDist2 = linkDist * linkDist;
+
+      // Precompute positions
+      const pts = state.particles;
+      const px = new Float32Array(pts.length);
+      const py = new Float32Array(pts.length);
+
+      for(let i=0;i<pts.length;i++){
+        const p = pts[i];
+        // subtle drift + mouse influence
+        const driftX = Math.sin(state.t * 0.7 + p.y*8) * 0.00012;
+        const driftY = Math.cos(state.t * 0.6 + p.x*8) * 0.00012;
+
+        const pull = state.mouse.active ? 0.0015 : 0.00045;
+        p.x += (driftX + (mx - p.x) * pull) * p.s;
+        p.y += (driftY + (my - p.y) * pull) * p.s;
+
+        // wrap
+        if(p.x < -0.05) p.x = 1.05;
+        if(p.x > 1.05) p.x = -0.05;
+        if(p.y < -0.05) p.y = 1.05;
+        if(p.y > 1.05) p.y = -0.05;
+
+        px[i] = p.x * W;
+        py[i] = p.y * H;
+      }
+
+      // Lines
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const dx = (px[i]-px[j]) / DPR;
+          const dy = (py[i]-py[j]) / DPR;
+          const d2 = dx*dx + dy*dy;
+          if(d2 < linkDist2){
+            const alpha = (1 - d2/linkDist2) * 0.22;
+            ctx.strokeStyle = `rgba(180, 210, 255, ${alpha})`;
+            ctx.lineWidth = 1 * DPR;
+            ctx.beginPath();
+            ctx.moveTo(px[i], py[i]);
+            ctx.lineTo(px[j], py[j]);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Dots
+      for(let i=0;i<pts.length;i++){
+        const p = pts[i];
+        const glow = ctx.createRadialGradient(px[i], py[i], 0, px[i], py[i], 14*DPR);
+        glow.addColorStop(0, `hsla(${p.hue}, 100%, 70%, ${0.28*p.a})`);
+        glow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(px[i], py[i], 14*DPR, 0, Math.PI*2);
+        ctx.fill();
+
+        ctx.fillStyle = `rgba(234,240,255, ${0.55*p.a})`;
+        ctx.beginPath();
+        ctx.arc(px[i], py[i], p.r*DPR, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+    // Toggle background effects
+    document.getElementById("toggleFX").addEventListener("click", ()=>{
+      running = !running;
+      if(running){
+        requestAnimationFrame(draw);
+        gsap.fromTo("#toggleFX",{scale:1},{scale:1.04,duration:.12,yoyo:true,repeat:1});
+      }else{
+        ctx.clearRect(0,0,W,H);
+        gsap.fromTo("#toggleFX",{rotation:0},{rotation:10,duration:.12,yoyo:true,repeat:1});
+      }
+    });
+
+    // Entrance animations (GSAP)
+    gsap.from(".brand", { y: -10, opacity: 0, duration: 0.7, ease: "power2.out" });
+    gsap.from(".nav-cta .pill", { y: -10, opacity: 0, duration: 0.7, ease: "power2.out", stagger: 0.08, delay: 0.05 });
+  </script>
+</body>
+</html>
